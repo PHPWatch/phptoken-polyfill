@@ -23,6 +23,10 @@ class PhpToken implements Stringable {
 
     /**
      * Same as token_get_all(), but returning array of PhpToken.
+     *
+     * @param string $code
+     * @param int $flags
+     *
      * @return static[]
      */
     public static function getAll(string $code, int $flags = 0): array {
