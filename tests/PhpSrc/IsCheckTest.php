@@ -32,13 +32,14 @@ PHP;
             if (isset($map[$i])) {
                 if ($map[$i][1]) {
                     $this->assertTrue( $token->isIgnorable(), 'Assert that the token "%s" is ignorable = true');
-
                 }
                 else {
                     $this->assertFalse($token->isIgnorable(), 'Assert that the token "%s" is ignorable = false');
                 }
 
                 $this->assertSame($map[$i][0], $token->id, sprintf('Assert that the name of the token at position "%d" is of name "%s"', $i, $token->getTokenName()));
+                $this->assertTrue($token->is($map[$i][0]));
+                $this->assertTrue($token->is([$map[$i][0], T_STRING]));
             }
         }
     }
