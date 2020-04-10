@@ -63,7 +63,39 @@ class PhpToken implements Stringable {
      * @return bool
      */
     public function is($kind): bool {
+        if (\is_string($kind)) {
+            return $this->text === $kind;
+        }
 
+        if (\is_int($kind)) {
+            return $this->id === $kind;
+        }
+
+        if (!\is_array($kind)) {
+            throw new TypeError('Kind must be of type int, string or array');
+        }
+
+        foreach ($kind as $singleKind) {
+            if (is_string($singleKind)) {
+                if ($this->text === $singleKind) {
+                    return true;
+                }
+                continue;
+            }
+
+            if (is_int($singleKind)) {
+                if ($this->id === $singleKind) {
+                    return true;
+                }
+                continue;
+            }
+
+            throw new TypeError(
+              'Kind array must have elements of type int or string'
+            );
+        }
+
+        return false;
     }
 
     /**
