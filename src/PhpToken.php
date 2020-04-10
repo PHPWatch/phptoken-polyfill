@@ -103,7 +103,15 @@ class PhpToken implements Stringable {
      * @return bool
      */
     public function isIgnorable(): bool {
-
+        switch ($this->id) {
+            case T_WHITESPACE:
+            case T_COMMENT:
+            case T_DOC_COMMENT:
+            case T_OPEN_TAG:
+                return true;
+            default:
+                return false;
+        }
     }
 
     public function __toString(): string {
