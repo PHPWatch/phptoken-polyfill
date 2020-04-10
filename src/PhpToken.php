@@ -42,7 +42,15 @@ class PhpToken implements Stringable {
      * @return string|null
      */
     public function getTokenName(): ?string {
+        if ($this->id < 256) {
+            return chr($this->id);
+        }
 
+        if ('UNKNOWN' !== $name = token_name($this->id)) {
+            return $name;
+        }
+
+        return null;
     }
 
 
