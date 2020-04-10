@@ -30,7 +30,10 @@ class PhpToken implements Stringable {
     }
 
     final public function __construct(int $id, string $text, int $line = -1, int $pos = -1) {
-
+        $this->id   = $id;
+        $this->text = $text;
+        $this->line = $line;
+        $this->pos  = $pos;
     }
 
     /**
