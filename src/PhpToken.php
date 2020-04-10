@@ -26,7 +26,18 @@ class PhpToken implements Stringable {
      * @return static[]
      */
     public static function getAll(string $code, int $flags = 0): array {
+        $return = [];
+        $tokens = \token_get_all($code, $flags);
 
+        foreach ($tokens as $token) {
+            if (\is_array($token)) {
+                $return[] = new static($token[0], $token[1], $token[2]);
+                continue;
+            }
+            $return[] = new static(0, $token);
+        }
+
+        return $return;
     }
 
     final public function __construct(int $id, string $text, int $line = -1, int $pos = -1) {
