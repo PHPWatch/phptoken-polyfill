@@ -19,27 +19,27 @@ function foo() {
 }
 PHP;
         $map = [
-          [T_OPEN_TAG, true],
-          [T_COMMENT, true],
-          [T_DOC_COMMENT, true],
-          [T_WHITESPACE, true],
-          [T_FUNCTION, false],
-          [T_WHITESPACE, true],
-          [T_STRING, false],
+          ['T_OPEN_TAG', true],
+          ['T_COMMENT', true],
+          ['T_DOC_COMMENT', true],
+          ['T_WHITESPACE', true],
+          ['T_FUNCTION', false],
+          ['T_WHITESPACE', true],
+          ['T_STRING', false],
+          ['(', false],
+          [')', false],
+          ['T_WHITESPACE', true],
+          ['{', false],
         ];
         $tokens = PhpToken::getAll($code);
         foreach ($tokens as $i => $token) {
             if (isset($map[$i])) {
-                if ($map[$i][1]) {
-                    $this->assertTrue( $token->isIgnorable(), 'Assert that the token "%s" is ignorable = true');
-                }
-                else {
-                    $this->assertFalse($token->isIgnorable(), 'Assert that the token "%s" is ignorable = false');
-                }
+                $this->assertSame($map[$i][1],  $token->isIgnorable(), sprintf('Checking token "%s" is ignorable', $token->getTokenName()));
+                $this->assertSame($map[$i][0], $token->getTokenName());
 
-                $this->assertSame($map[$i][0], $token->id, sprintf('Assert that the name of the token at position "%d" is of name "%s"', $i, $token->getTokenName()));
-                $this->assertTrue($token->is($map[$i][0]));
-                $this->assertTrue($token->is([$map[$i][0], T_STRING]));
+                $id = $map[$i][0][0] !== 'T' ? ord($map[$i][0]) : constant($map[$i][0]);
+                $this->assertTrue($token->is($id));
+                $this->assertTrue($token->is([T_STRING, $id]));
             }
         }
     }
