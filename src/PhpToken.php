@@ -38,7 +38,9 @@ class PhpToken implements Stringable {
                 $return[] = new static($token[0], $token[1], $token[2]);
                 continue;
             }
-            $return[] = new static(0, $token);
+
+            // We do not have line or position information at this point.
+            $return[] = new static(ord($token), $token);
         }
 
         return $return;
