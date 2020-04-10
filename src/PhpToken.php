@@ -1,6 +1,6 @@
 <?php
 
-class PhpToken {
+class PhpToken implements Stringable {
     /**
      * @var int One of the T_* constants, or an integer < 256 representing a single-char token.
      */
