@@ -1,28 +1,30 @@
 {
-    "name": "phpwatch/phptoken-polyfill",
-    "description": "A polyfill for PHP 8.0's PhpToken class",
-    "type": "library",
-    "require": {
-        "php": "^7.1",
-        "ext-tokenizer": "*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.1"
-    },
-    "autoload": {
-        "classmap": ["src/"]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "PHPWatch\\PhpToken\\": "tests"
-        }
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ayesh Karunaratne",
-            "email": "ayesh@ayesh.me"
-        }
-    ],
-    "minimum-stability": "stable"
+	"name": "phpwatch/phptoken-polyfill",
+	"description": "A polyfill for PHP 8.0's PhpToken class",
+	"type": "library",
+	"require": {
+		"php": "^7.1",
+		"ext-tokenizer": "*"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.1"
+	},
+	"autoload": {
+		"classmap": [
+			"src/"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"PHPWatch\\PhpToken\\": "tests"
+		}
+	},
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Ayesh Karunaratne",
+			"email": "ayesh@ayesh.me"
+		}
+	],
+	"minimum-stability": "stable"
 }
