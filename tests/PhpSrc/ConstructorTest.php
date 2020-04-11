@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWatch\PhpToken\PhpSrc;
+namespace PHPWatch\PhpToken\Tests\PhpSrc;
 
 use PhpToken;
 use PHPUnit\Framework\TestCase;

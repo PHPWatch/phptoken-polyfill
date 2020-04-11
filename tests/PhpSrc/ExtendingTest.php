@@ -1,11 +1,11 @@
 <?php
 
 
-namespace PHPWatch\PhpToken\PhpSrc;
+namespace PHPWatch\PhpToken\Tests\PhpSrc;
 
 
 use PHPUnit\Framework\TestCase;
-use PHPWatch\PhpToken\Fixtures\PhpTokenStrToLower;
+use PHPWatch\PhpToken\Tests\Fixtures\PhpTokenStrToLower;
 
 class ExtendingTest extends TestCase {
 

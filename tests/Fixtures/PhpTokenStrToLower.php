@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPWatch\PhpToken\Fixtures;
+namespace PHPWatch\PhpToken\Tests\Fixtures;
 
 use PhpToken;
 
