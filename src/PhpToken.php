@@ -39,16 +39,16 @@ class PhpToken implements Stringable {
 		 */
 		public static function getAll(string $code, int $flags = 0): array {
 				$return = [];
-				$tokens = token_get_all($code, $flags);
+				$tokens = \token_get_all($code, $flags);
 
 				foreach ($tokens as $token) {
-						if (is_array($token)) {
+						if (\is_array($token)) {
 								$return[] = new static($token[0], $token[1], $token[2]);
 								continue;
 						}
 
 						// We do not have line or position information at this point.
-						$return[] = new static(ord($token), $token);
+						$return[] = new static(\ord($token), $token);
 				}
 
 				return $return;
@@ -61,10 +61,10 @@ class PhpToken implements Stringable {
 		 */
 		public function getTokenName(): ?string {
 				if ($this->id < 256) {
-						return chr($this->id);
+						return \chr($this->id);
 				}
 
-				if ('UNKNOWN' !== $name = token_name($this->id)) {
+				if ('UNKNOWN' !== $name = \token_name($this->id)) {
 						return $name;
 				}
 
@@ -81,34 +81,34 @@ class PhpToken implements Stringable {
 		 * @return bool
 		 */
 		public function is($kind): bool {
-				if (is_string($kind)) {
+				if (\is_string($kind)) {
 						return $this->text === $kind;
 				}
 
-				if (is_int($kind)) {
+				if (\is_int($kind)) {
 						return $this->id === $kind;
 				}
 
-				if (!is_array($kind)) {
+				if (!\is_array($kind)) {
 						throw new TypeError('Kind must be of type int, string or array');
 				}
 
 				foreach ($kind as $singleKind) {
-						if (is_string($singleKind)) {
+						if (\is_string($singleKind)) {
 								if ($this->text === $singleKind) {
 										return true;
 								}
 								continue;
 						}
 
-						if (is_int($singleKind)) {
+						if (\is_int($singleKind)) {
 								if ($this->id === $singleKind) {
 										return true;
 								}
 								continue;
 						}
 
-						throw new TypeError(
+						throw new \TypeError(
 							'Kind array must have elements of type int or string'
 						);
 				}
