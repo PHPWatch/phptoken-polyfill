@@ -21,6 +21,7 @@ jobs:
           - "7.2"
           - "7.3"
           - "7.4"
+          - "8.0"
 
     steps:
       - name: Checkout
@@ -30,8 +31,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, json, mbstring
+          extensions: mbstring, tokenizer
           ini-values: assert.exception=1, zend.assertions=1
+          coverage: pcov
 
       - name: Install composer dependencies ignoring platform requirements
         if: matrix.php == '8.0'
