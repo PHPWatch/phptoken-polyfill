@@ -33,7 +33,6 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: mbstring, tokenizer
           ini-values: assert.exception=1, zend.assertions=1
-          coverage: xdebug
 
       - name: Install composer dependencies ignoring platform requirements
         if: matrix.php == '8.0'
@@ -45,3 +44,6 @@ jobs:
 
       - name: Run tests with phpunit
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - name: Run a lightweight benchmark
+        run: php tests/benchmark.php
