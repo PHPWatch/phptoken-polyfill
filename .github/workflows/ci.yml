@@ -33,7 +33,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: mbstring, tokenizer
           ini-values: assert.exception=1, zend.assertions=1
-          coverage: pcov
+          coverage: xdebug
 
       - name: Install composer dependencies ignoring platform requirements
         if: matrix.php == '8.0'
