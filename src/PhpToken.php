@@ -53,7 +53,8 @@ class PhpToken implements Stringable {
 								$return = new static($token[0], $token[1], $token[2], $current_cursor_position);
 						} elseif (null === $return) {
 								$return = new static(\ord($token), $token, 0, 0);
-						} elseif ($return instanceof static) {
+						} else {
+								/** @var \PhpToken $return */
 								$current_line_position = $return->line + \preg_match_all('/(?:\r\n|\r|\n)/', $return->text);
 								$return = new static(\ord($token), $token, $current_line_position, $current_cursor_position);
 						}
