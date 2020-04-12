@@ -45,14 +45,55 @@ class PhpToken implements Stringable {
 				$return = [];
 				$tokens = \token_get_all($code, $flags);
 
+				$last_known_object = null;
+				$current_cursor_position = 0;
+
 				foreach ($tokens as $token) {
 						if (\is_array($token)) {
-								$return[] = new static($token[0], $token[1], $token[2]);
+								$return[] = $last_known_object = new static($token[0], $token[1], $token[2], $current_cursor_position + 1);
+
+								$last_char = substr($last_known_object->text, -1);
+
+								// Instead of a regular expression, simply mark as position is 0.
+								if ($last_char === "\n" || $last_char === "\r") {
+										$current_cursor_position = 0;
+										continue;
+								}
+
+								// Todo: Optimize this super greedy regex.
+								preg_match_all('/^(.*)$/m', $last_known_object->text, $matches);
+								$match = array_pop($matches[0]);
+								$current_cursor_position = $last_known_object->pos + strlen($match) - 1;
 								continue;
 						}
 
-						// We do not have line or position information at this point.
-						$return[] = new static(\ord($token), $token);
+						if (!$last_known_object) {
+								$return[] = $last_known_object = new static(\ord($token), $token, 0, 1);
+								continue;
+						}
+
+						/*
+						 * Use a non-capturing regex to count the number of new lines. CRLF (\r\n) is matched first,
+						 * followed by CR and LF separately. The number of matches is the number of lines the last token
+						 * had.
+						 */
+						$current_line_position = $last_known_object->line + preg_match_all('/(?:\r\n|\r|\n)/', $last_known_object->text);
+
+						$return[] = $last_known_object = new static(\ord($token), $token, $current_line_position, $current_cursor_position + 1);
+
+						// Instead of a regular expression, simply mark as position is 0 if the last char is CR or LF.
+						$last_char = substr($last_known_object->text, -1);
+						if ($last_char === "\n" || $last_char === "\r") {
+								$current_cursor_position = 0;
+								continue;
+						}
+
+						/*
+						 * Match the last line in the node. Todo: /*./ is greedy that a president of a courrpted country!
+						 **/
+						preg_match_all('/^(.*)$/m', $last_known_object->text, $matches);
+						$match = array_pop($matches[0]);
+						$current_cursor_position = $last_known_object->pos + strlen($match) - 1;
 				}
 
 				return $return;
