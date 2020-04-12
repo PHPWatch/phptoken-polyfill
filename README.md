@@ -1,6 +1,6 @@
 # PhpToken Polyfill
 
-A polyfill to bring the PHP 8.0's `PhpToken` class to PHP 7.1 and later.
+A polyfill to bring the [PHP 8.0 `PhpToken`](https://php.watch/versions/8.0/PhpToken) class to PHP 7.1 and later.
 
 [![Latest Stable Version](https://poser.pugx.org/phpwatch/phptoken-polyfill/v/stable)](https://packagist.org/packages/phpwatch/phptoken-polyfill) [![License](https://poser.pugx.org/phpwatch/phptoken-polyfill/license)](https://github.com/PHPWatch/phptoken-polyfill)  [![CI](https://github.com/phpwatch/phptoken-polyfill/workflows/CI/badge.svg)](https://github.com/phpwatch/phptoken-polyfill/actions)  
 

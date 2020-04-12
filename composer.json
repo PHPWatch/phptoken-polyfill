@@ -2,6 +2,8 @@
 	"name": "phpwatch/phptoken-polyfill",
 	"description": "A polyfill for PHP 8.0's PhpToken class",
 	"type": "library",
+	"keywords": ["polyfill", "php8", "tokenizer"],
+	"homepage": "https://php.watch/versions/8.0/PhpToken",
 	"require": {
 		"php": "^7.1",
 		"ext-tokenizer": "*"
@@ -27,5 +29,10 @@
 			"email": "ayesh@ayesh.me"
 		}
 	],
-	"minimum-stability": "stable"
+	"minimum-stability": "stable",
+	"support": {
+		"issues": "https://github.com/phpwatch/phptoken-polyfill/issues",
+		"docs": "https://github.com/phpwatch/phptoken-polyfill/blob/master/README.md",
+		"source": "https://github.com/phpwatch/phptoken-polyfill.git"
+	}
 }
