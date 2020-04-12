@@ -56,23 +56,22 @@ class PhpToken implements Stringable {
 								$return[] = $last_known_object = new static(\ord($token), $token, 0, 1);
 								continue; // This continue is intentional
 						}
-						if (is_string($token)) {
-								$current_line_position = $last_known_object->line + preg_match_all('/(?:\r\n|\r|\n)/', $last_known_object->text);
+						if (\is_string($token)) {
+								$current_line_position = $last_known_object->line + \preg_match_all('/(?:\r\n|\r|\n)/', $last_known_object->text);
 								$return[] = $last_known_object = new static(\ord($token), $token, $current_line_position, $current_cursor_position + 1);
 								unset($current_line_position);
 						}
 
 						// Instead of a regular expression, simply mark as position is 0 if the last char is CR or LF.
-						$last_char = substr($last_known_object->text, -1);
+						$last_char = \substr($last_known_object->text, -1);
 						if ($last_char === "\n" || $last_char === "\r") {
 								$current_cursor_position = 0;
 								continue;
 						}
 
-						$lines = preg_split("/\r\n|\n|\r/", $last_known_object->text);
-						$match = array_pop($lines);
-
-						$current_cursor_position = $last_known_object->pos + strlen($match) - 1;
+						$lines = \preg_split("/\r\n|\n|\r/", $last_known_object->text);
+						$match = \array_pop($lines);
+						$current_cursor_position = $last_known_object->pos + \strlen($match) - 1;
 				}
 
 				return $return;
