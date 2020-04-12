@@ -32,6 +32,10 @@ class PhpToken implements Stringable {
 		/**
 		 * Same as token_get_all(), but returning array of PhpToken.
 		 *
+		 * token_get_all() does not return the line number and position of tokens.
+		 * This polyfill attempts to infer the line and position by observing the
+		 * last token, and counting the number of lines and bytes the last line has.
+		 *
 		 * @param  string  $code
 		 * @param  int     $flags
 		 *
