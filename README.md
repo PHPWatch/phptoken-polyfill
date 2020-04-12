@@ -2,7 +2,7 @@
 
 A polyfill to bring the [PHP 8.0 `PhpToken`](https://php.watch/versions/8.0/PhpToken) class to PHP 7.1 and later.
 
-[![Latest Stable Version](https://poser.pugx.org/phpwatch/phptoken-polyfill/v/stable)](https://packagist.org/packages/phpwatch/phptoken-polyfill) [![License](https://poser.pugx.org/phpwatch/phptoken-polyfill/license)](https://github.com/PHPWatch/phptoken-polyfill)  [![CI](https://github.com/phpwatch/phptoken-polyfill/workflows/CI/badge.svg)](https://github.com/phpwatch/phptoken-polyfill/actions)  
+[![Latest Stable Version](https://poser.pugx.org/phpwatch/phptoken-polyfill/v/stable)](https://packagist.org/packages/phpwatch/phptoken-polyfill) [![License](https://poser.pugx.org/phpwatch/phptoken-polyfill/license)](https://github.com/phpwatch/phptoken-polyfill)  [![CI](https://github.com/phpwatch/phptoken-polyfill/workflows/CI/badge.svg)](https://github.com/phpwatch/phptoken-polyfill/actions)  
 
 ## Synopsis
 This library provides a compatible layer to bring `PhpToken` class that comes with PHP 8. It provides the full functionality of the class, but from user-land PHP code. Note that PHP 8's built-in `PhpToken` class is fast and memory-friendly because it is in C language. However, if you have a library that requires the `PhpToken` class, you can use this library to transparently bring that functionality to any PHP version 7.1 or later.
@@ -44,4 +44,4 @@ Please note that tests and other deveopment dependencies are not included when y
 
 ## Credits
 
-@Ayesh: [Ayesh Karunaratne](https://ayesh.me).
+[@Ayesh](https://github.com/Ayesh): [Ayesh Karunaratne](https://ayesh.me).
