@@ -42,39 +42,27 @@ class PhpToken implements Stringable {
 		 * @return static[]
 		 */
 		public static function getAll(string $code, int $flags = 0): array {
-				$return = [];
+				$all_return = [];
 				$tokens = \token_get_all($code, $flags);
 
-				$last_known_object = null;
+				$return = null;
 				$current_cursor_position = 0;
 
 				foreach ($tokens as $token) {
 						if (\is_array($token)) {
-								$return[] = $last_known_object = new static($token[0], $token[1], $token[2], $current_cursor_position + 1);
-						}
-						elseif (!$last_known_object) {
-								$return[] = $last_known_object = new static(\ord($token), $token, 0, 1);
-								continue; // This continue is intentional
-						}
-						if (\is_string($token)) {
-								$current_line_position = $last_known_object->line + \preg_match_all('/(?:\r\n|\r|\n)/', $last_known_object->text);
-								$return[] = $last_known_object = new static(\ord($token), $token, $current_line_position, $current_cursor_position + 1);
-								unset($current_line_position);
+								$return = new static($token[0], $token[1], $token[2], $current_cursor_position);
+						} elseif (null === $return) {
+								$return = new static(\ord($token), $token, 0, 0);
+						} elseif ($return instanceof static) {
+								$current_line_position = $return->line + \preg_match_all('/(?:\r\n|\r|\n)/', $return->text);
+								$return = new static(\ord($token), $token, $current_line_position, $current_cursor_position);
 						}
 
-						// Instead of a regular expression, simply mark as position is 0 if the last char is CR or LF.
-						$last_char = \substr($last_known_object->text, -1);
-						if ($last_char === "\n" || $last_char === "\r") {
-								$current_cursor_position = 0;
-								continue;
-						}
-
-						$lines = \preg_split("/\r\n|\n|\r/", $last_known_object->text);
-						$match = \array_pop($lines);
-						$current_cursor_position = $last_known_object->pos + \strlen($match) - 1;
+						$current_cursor_position += strlen($return->text);
+						$all_return[] = $return;
 				}
 
-				return $return;
+				return $all_return;
 		}
 
 		/**
