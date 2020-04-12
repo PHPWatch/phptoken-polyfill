@@ -54,15 +54,18 @@ class CursorTracingTest extends TestCase {
 		}
 
 		private function getSnippet(): string {
-				return <<<'CODE'
+				$code = '';
+				$code .= "\n";
+				$code .= "\n";
+				$code .= '<?php';
+				$code .= "\n";
+				$code .= "\n";
+				$code .= "\n";
+				$code .= '$c = \'Foo\';';
+				$code .= "\n";
+				$code .= "\n";
+				$code .= '$d = \'Bar\';';
 
-
-<?php
-
-
-$c = 'Foo';
-
-$d = 'Bar';
-CODE;
+				return $code;
 		}
 }
