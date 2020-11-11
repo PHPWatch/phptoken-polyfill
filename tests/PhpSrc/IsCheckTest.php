@@ -29,7 +29,7 @@ PHP;
             ['T_WHITESPACE', true],
             ['{', false],
         ];
-        $tokens = PhpToken::getAll($code);
+        $tokens = PhpToken::tokenize($code);
         foreach ($tokens as $i => $token) {
             if (isset($map[$i])) {
                 $this->assertSame(

@@ -18,7 +18,7 @@ FUNCTION FOO() {
 PHP;
 
         $output = '';
-        foreach (PhpTokenStrToLower::getAll($code) as $token) {
+        foreach (PhpTokenStrToLower::tokenize($code) as $token) {
             $output .= $token->getLoweredText();
 
             if ($token->extra !== 123) {

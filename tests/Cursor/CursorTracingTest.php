@@ -13,7 +13,7 @@ use function token_get_all;
 class CursorTracingTest extends TestCase {
     public function testTokenCountsAreEqual(): void {
         $snippet = $this->getSnippet();
-        $tokens = PhpToken::getAll($snippet);
+        $tokens = PhpToken::tokenize($snippet);
         $this->assertCount(count(token_get_all($snippet)), $tokens);
         $this->assertContainsOnlyInstancesOf(PhpToken::class, $tokens);
     }
@@ -35,7 +35,7 @@ class CursorTracingTest extends TestCase {
     }
 
     public function testIndividualTokens(): void {
-        $tokens = PhpToken::getAll($this->getSnippet());
+        $tokens = PhpToken::tokenize($this->getSnippet());
 
         $this->assertSame(1, $tokens[0]->line); // whitespace
         $this->assertSame(0, $tokens[0]->pos); // whitespace

@@ -41,7 +41,7 @@ class PhpToken implements Stringable {
      *
      * @return static[]
      */
-    public static function getAll(string $code, int $flags = 0): array {
+    public static function tokenize(string $code, int $flags = 0): array {
         $all_return = [];
         $tokens = token_get_all($code, $flags);
 

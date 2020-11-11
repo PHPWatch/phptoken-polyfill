@@ -15,7 +15,7 @@ function foo() {
 }
 PHP;
 
-        $tokens = PhpToken::getAll($code);
+        $tokens = PhpToken::tokenize($code);
         $this->assertContainsOnlyInstancesOf(PhpToken::class, $tokens);
 
         $this->assertSame(1, $tokens[0]->line);
