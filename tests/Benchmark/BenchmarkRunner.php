@@ -17,7 +17,7 @@ class BenchmarkRunner {
         $stopwatch::start();
 
         for ($i = 1; $i < 100; $i++) {
-            PhpToken::getAll($contents);
+            PhpToken::tokenize($contents);
         }
 
         $stopwatch::stop();
