@@ -35,7 +35,7 @@ Here is an example of using `PhpToken` class. The example below should work in a
 
 ```php
 $snippet = '<?php echo "Hello World"; ?>';
-$tokens = \PhpToken::getAll($snippet);
+$tokens = \PhpToken::tokenize($snippet);
 ```
 
 ## Development, tests, and contributing
