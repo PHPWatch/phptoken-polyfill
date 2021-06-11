@@ -5,7 +5,7 @@
 	"keywords": ["polyfill", "php8", "tokenizer"],
 	"homepage": "https://php.watch/versions/8.0/PhpToken",
 	"require": {
-		"php": "^7.1",
+		"php": ">=7.1",
 		"ext-tokenizer": "*"
 	},
 	"require-dev": {
